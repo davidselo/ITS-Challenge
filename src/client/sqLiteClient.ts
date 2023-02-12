@@ -1,6 +1,12 @@
+import { ReadCsv } from "../helpers/readCsv";
+
 const fs = require("fs");
 const sqlite3 = require("sqlite3").verbose();
 
+// Process CSV files.
+const productCsvFile = "./data/products.csv";
+const orderCsvFile = "./data/orders.csv";
+const orderItemsCsvFile = "./data/order_item.csv";
 
 export class SqLiteClient {
     filepath: string;
@@ -48,15 +54,16 @@ export class SqLiteClient {
          
          CREATE TABLE IF NOT EXISTS order_items
          (
-            order_id        INTEGER PRIMARY KEY,
+            order_id        INTEGER,
             sku             TEXT
          );
 
         `);
+        const csvHelper = new ReadCsv(productCsvFile, orderCsvFile, orderItemsCsvFile, this.db);
+        csvHelper.processCsvFiles();
     }
 
     query(queryStatement: string){
         this.db.exec(queryStatement);
-        //this.db.run(queryStatement);
     }
 }

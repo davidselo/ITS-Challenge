@@ -1,5 +1,6 @@
 import { SqLiteClient } from './client/sqLiteClient';
 import { ReadCsv} from './helpers/readCsv';
+import { Order } from './models/order';
 
 
 const myApp = () => {
@@ -10,13 +11,13 @@ const myApp = () => {
   const db = new SqLiteClient(databaseFilepath);
   db.connectToDatabase();
 
-  // Process CSV files.
-  const productCsvFile = "./data/products.csv";
-  const orderCsvFile = "./data/orders.csv";
-  const orderItemsCsvFile = "./data/order_item.csv";
-  
-  const csvHelper = new ReadCsv(productCsvFile, orderCsvFile, orderItemsCsvFile, db);
-  csvHelper.processCsvFiles();
+
+  // Printing out Orders with Order Totals.
+  const order = new Order(db);
+  // order.getOrdersWithTotals();
+
+  order.getOrdersWithItems();
+
 
 }
 

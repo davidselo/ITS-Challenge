@@ -3,8 +3,8 @@ const { parse } = require('csv-parse');
 import { SqLiteClient } from "../client/sqLiteClient";
 import { Product } from "../contracts/Product";
 import { Order, OrderItem } from "../contracts/Order";
-import { insertProduct } from "../client/SqlQuery/produtcQueries";
-import { insertOrder, insertOrderItem } from "../client/SqlQuery/orderQueries";
+import { insertProduct } from "../client/SqlQueries/produtcQueries";
+import { insertOrder, insertOrderItem } from "../client/SqlQueries/orderQueries";
 
 
 export class ReadCsv {
