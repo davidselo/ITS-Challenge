@@ -4,6 +4,7 @@ import { SqLiteClient } from "../client/sqLiteClient";
 import { Product } from "../contracts/Product";
 import { Order } from "../contracts/Order";
 import { insertProduct } from "../client/SqlQuery/produtcQueries";
+import { insertOrder } from "../client/SqlQuery/orderQueries";
 
 export class ReadCsv {
     
@@ -57,6 +58,7 @@ export class ReadCsv {
                     };
                     // 2. Add tuples to the Map object.
                     // Insert Order into orders table
+                    this.dbHandler.query(insertOrder(order.orderId,order.customerEmail));
                 })
                 .on('end', () => {
                     resolve(true);
@@ -85,7 +87,7 @@ export class ReadCsv {
 
     async processCsvFiles(){
         await this.readProducts();
-        // await this.readOrders();
+        await this.readOrders();
         // await this.readOrderItems();
     }
 } 
