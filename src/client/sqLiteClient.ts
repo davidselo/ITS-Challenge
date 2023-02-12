@@ -4,15 +4,16 @@ const sqlite3 = require("sqlite3").verbose();
 
 export class SqLiteClient {
     filepath: string;
+    db: any;
 
     constructor( filepath: string){
         this.filepath = filepath;
     }
 
-    connectToDatabase( ) {
+    connectToDatabase() {
         // 1. Case database defined, return it.
         if(fs.existsSync(this.filepath)){
-            return new sqlite3.Database(this.filepath);
+            this.db = new sqlite3.Database(this.filepath);
         }
         // 2. Case database doesn't exists, we inicializate it.
         else{
@@ -23,8 +24,9 @@ export class SqLiteClient {
                 // create Database.
                 this.initialiseDatabase(db);
             });
-            return db;
+            this.db = db;
         }
+        return this.db;
     }
 
     initialiseDatabase(databaseHandler: any){
@@ -51,5 +53,10 @@ export class SqLiteClient {
          );
 
         `);
+    }
+
+    query(queryStatement: string){
+        this.db.exec(queryStatement);
+        //this.db.run(queryStatement);
     }
 }
