@@ -16,7 +16,10 @@ const myApp = () => {
   const order = new Order(db);
   // order.getOrdersWithTotals();
 
-  order.getOrdersWithItems();
+  //order.getOrdersWithItems();
+
+  const orderId = "12314324";
+  order.findByOrderId(orderId);
 
 
 }

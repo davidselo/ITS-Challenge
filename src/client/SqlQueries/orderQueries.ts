@@ -18,3 +18,6 @@ export const getOrdersWithItems = `
     INNER JOIN order_items ON order_items.order_id = o.order_id
     GROUP BY o.order_id
     ORDER BY o.order_id;`;
+
+export const findByOrderId = 'SELECT o.order_id, o.customer_email FROM orders AS o WHERE o.order_id= ?'; 
+
