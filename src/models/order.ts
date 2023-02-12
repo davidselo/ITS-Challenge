@@ -1,5 +1,10 @@
 import { SqLiteClient } from '../client/sqLiteClient';
-import { getOrdersWithTotals, getOrdersWithItems, findByOrderId } from '../client/SqlQueries/orderQueries';
+import {
+  getOrdersWithTotals,
+  getOrdersWithItems,
+  findOrderById,
+  findOrderByEmail,
+} from '../client/SqlQueries/orderQueries';
 export class Order {
   dbHandler;
 
@@ -26,7 +31,15 @@ export class Order {
   }
 
   findByOrderId(orderId: string) {
-    this.dbHandler.db.get(findByOrderId, orderId, (error: any, row: any) => {
+    this.dbHandler.db.get(findOrderById, orderId, (error: any, row: any) => {
+      if (error) {
+        return console.log(error.message);
+      }
+      console.log(row);
+    });
+  }
+  findOrderByCustomerEmail(customerEmail: string) {
+    this.dbHandler.db.get(findOrderByEmail, customerEmail, (error: any, row: any) => {
       if (error) {
         return console.log(error.message);
       }

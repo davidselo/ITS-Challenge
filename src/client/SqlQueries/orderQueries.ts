@@ -1,9 +1,9 @@
 export const insertOrder = (orderId: string, customerEmail: string): string => {
-    return `INSERT OR IGNORE INTO orders (order_id, customer_email) VALUES ('${orderId}','${customerEmail}');`
-}
+  return `INSERT OR IGNORE INTO orders (order_id, customer_email) VALUES ('${orderId}','${customerEmail}');`;
+};
 export const insertOrderItem = (orderId: string, productSku: string): string => {
-    return `INSERT INTO order_items (order_id, sku) VALUES ('${orderId}','${productSku}');`
-}
+  return `INSERT INTO order_items (order_id, sku) VALUES ('${orderId}','${productSku}');`;
+};
 
 export const getOrdersWithTotals = `
     SELECT o.order_id, SUM(p.special_price) as totals
@@ -19,5 +19,6 @@ export const getOrdersWithItems = `
     GROUP BY o.order_id
     ORDER BY o.order_id;`;
 
-export const findByOrderId = 'SELECT o.order_id, o.customer_email FROM orders AS o WHERE o.order_id= ?'; 
+export const findOrderById = 'SELECT o.order_id, o.customer_email FROM orders AS o WHERE o.order_id= ?';
 
+export const findOrderByEmail = 'SELECT o.order_id, o.customer_email FROM orders AS o WHERE o.customer_email= ?';
