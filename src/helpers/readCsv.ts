@@ -2,9 +2,10 @@ const fs = require('fs');
 const { parse } = require('csv-parse');
 import { SqLiteClient } from "../client/sqLiteClient";
 import { Product } from "../contracts/Product";
-import { Order } from "../contracts/Order";
+import { Order, OrderItem } from "../contracts/Order";
 import { insertProduct } from "../client/SqlQuery/produtcQueries";
-import { insertOrder } from "../client/SqlQuery/orderQueries";
+import { insertOrder, insertOrderItem } from "../client/SqlQuery/orderQueries";
+
 
 export class ReadCsv {
     
@@ -74,12 +75,18 @@ export class ReadCsv {
             fs.createReadStream(this.ordersItemsFile)
                 .pipe(parse({ delimiter: ',', from_line: 2 }))
                 .on('data', (row: any) => {
+                    const orderItem: OrderItem = {
+                        orderId: row[0],
+                        sku: row[1],
+                    };
                     // Insert row on OrderItem table
+                    this.dbHandler.query(insertOrderItem(orderItem.orderId,orderItem.sku));
                 })
                 .on('end', () => {
                     resolve(true);
                 })
                 .on('error', () => {
+                    console.log()
                     reject(true);
                 });
         });
@@ -88,6 +95,6 @@ export class ReadCsv {
     async processCsvFiles(){
         await this.readProducts();
         await this.readOrders();
-        // await this.readOrderItems();
+        await this.readOrderItems();
     }
 } 
