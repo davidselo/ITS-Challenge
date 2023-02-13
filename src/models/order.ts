@@ -1,4 +1,5 @@
 import { SqLiteClient } from '../client/sqLiteClient';
+// @todo: Change method names adding query suffix.
 import {
   getOrdersWithTotals,
   getOrdersWithItems,

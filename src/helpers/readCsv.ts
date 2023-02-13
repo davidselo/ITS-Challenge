@@ -7,6 +7,7 @@ import { insertProduct } from '../client/SqlQueries/produtcQueries';
 import { insertOrder, insertOrderItem } from '../client/SqlQueries/orderQueries';
 
 export class ReadCsv {
+  // @todo: merge readProducts(), readOrders() and readOrderItems() in one method.
   // Properties definition.
   productsFile: string;
   ordersFile: string;
@@ -29,6 +30,7 @@ export class ReadCsv {
         .pipe(parse({ delimiter: ',', from_line: 2 }))
 
         // 2. Process tuple and insert into database.
+        // @todo: Feature - allow different header order in csv files.
         // @todo: validation before tuple is inserted into the database, out of the scope of this challenge.
         .on('data', (row: any) => {
           const product: Product = {
