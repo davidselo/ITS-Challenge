@@ -33,6 +33,7 @@ export class ReadCsv {
             specialPrice: row[3],
           };
           // insert product into product table.
+          console.log(this.dbHandler);
           this.dbHandler.query(
             insertProduct(product.simpleSku, product.name, product.price, product.specialPrice, product.url),
           );

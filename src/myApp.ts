@@ -1,5 +1,4 @@
 import { SqLiteClient } from './client/sqLiteClient';
-import { ReadCsv } from './helpers/readCsv';
 import { Order } from './models/order';
 
 const myApp = () => {
@@ -22,7 +21,7 @@ const myApp = () => {
 
   // Testing find Order By email
   const email = 'useremail4@example.com';
-  //order.findOrderByCustomerEmail(email);
+  order.findOrderByCustomerEmail(email);
 };
 
 module.exports = myApp;
