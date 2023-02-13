@@ -21,3 +21,5 @@ export const databaseSetupScript = `
          );
 
         `;
+
+export const tearDownDatabase = 'DROP DATABASE inTheStyle.db';
