@@ -22,7 +22,7 @@ const myApp = () => {
 
   // Testing find Order By email
   const email = 'useremail4@example.com';
-  order.findOrderByCustomerEmail(email);
+  //order.findOrderByCustomerEmail(email);
 };
 
 module.exports = myApp;
