@@ -7,7 +7,6 @@ import { insertProduct } from '../client/SqlQueries/produtcQueries';
 import { insertOrder, insertOrderItem } from '../client/SqlQueries/orderQueries';
 
 export class ReadCsv {
-  // @todo: merge readProducts(), readOrders() and readOrderItems() in one method.
   // Properties definition.
   productsFile: string;
   ordersFile: string;

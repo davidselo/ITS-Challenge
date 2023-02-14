@@ -11,17 +11,17 @@ const myApp = () => {
 
   // Printing out Orders with Order Totals.
   const order = new Order(db);
-  //order.getOrdersWithTotals();
+  //order.getOrdersWithTotalsQuery();
 
-  //order.getOrdersWithItems();
+  // order.getOrdersWithItemsQuery();
 
   // Testing find Order By id
   // const orderId = '12314324';
-  // order.findByOrderId(orderId);
+  //order.findByOrderId(orderId);
 
   // Testing find Order By email
-  //const email = 'useremail4@example.com';
-  //order.findOrderByCustomerEmail(email);
+  const email = 'useremail4@example.com';
+  order.findOrderByCustomerEmail(email);
 };
 
 module.exports = myApp;

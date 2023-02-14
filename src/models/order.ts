@@ -1,10 +1,9 @@
 import { SqLiteClient } from '../client/sqLiteClient';
-// @todo: Change method names adding query suffix.
 import {
-  getOrdersWithTotals,
-  getOrdersWithItems,
-  findOrderById,
-  findOrderByEmail,
+  getOrdersWithTotalsQuery,
+  getOrdersWithItemsQuery,
+  findOrderByIdQuery,
+  findOrderByEmailQuery,
 } from '../client/SqlQueries/orderQueries';
 export class Order {
   dbHandler;
@@ -13,8 +12,8 @@ export class Order {
     this.dbHandler = dbHandler;
   }
 
-  getOrdersWithTotals() {
-    this.dbHandler.db.each(getOrdersWithTotals, (error: any, row: any) => {
+  getOrdersWithTotalsQuery() {
+    this.dbHandler.db.each(getOrdersWithTotalsQuery, (error: any, row: any) => {
       if (error) {
         return console.log(error.message);
       }
@@ -22,8 +21,8 @@ export class Order {
     });
   }
 
-  getOrdersWithItems() {
-    this.dbHandler.db.each(getOrdersWithItems, (error: any, row: any) => {
+  getOrdersWithItemsQuery() {
+    this.dbHandler.db.each(getOrdersWithItemsQuery, (error: any, row: any) => {
       if (error) {
         return console.log(error.message);
       }
@@ -32,7 +31,7 @@ export class Order {
   }
 
   findByOrderId(orderId: string) {
-    this.dbHandler.db.get(findOrderById, orderId, (error: any, row: any) => {
+    this.dbHandler.db.get(findOrderByIdQuery, orderId, (error: any, row: any) => {
       if (error) {
         return console.log(error.message);
       }
@@ -40,7 +39,7 @@ export class Order {
     });
   }
   findOrderByCustomerEmail(customerEmail: string) {
-    this.dbHandler.db.get(findOrderByEmail, customerEmail, (error: any, row: any) => {
+    this.dbHandler.db.get(findOrderByEmailQuery, customerEmail, (error: any, row: any) => {
       if (error) {
         return console.log(error.message);
       }
