@@ -17,6 +17,7 @@ export class Order {
       if (error) {
         return console.log(error.message);
       }
+      // @todo: return result and process in Console or Webapp.
       console.log(row);
     });
   }
@@ -26,6 +27,7 @@ export class Order {
       if (error) {
         return console.log(error.message);
       }
+      // @todo: return result and process in Console or Webapp.
       console.log(row);
     });
   }
@@ -35,6 +37,7 @@ export class Order {
       if (error) {
         return console.log(error.message);
       }
+      // @todo: return result and process in Console or Webapp.
       console.log(row);
     });
   }
@@ -43,6 +46,7 @@ export class Order {
       if (error) {
         return console.log(error.message);
       }
+      // @todo: return result and process in Console or Webapp.
       console.log(row);
     });
   }
