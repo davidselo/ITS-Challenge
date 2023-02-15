@@ -89,7 +89,7 @@ npm lint
 npx jest --coverage
 ```
 
-##### How to run the cli application?
+### How to run the cli application?
 
 1. Build the app.
 
