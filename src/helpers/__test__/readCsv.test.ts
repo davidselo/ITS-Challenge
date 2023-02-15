@@ -11,7 +11,7 @@ let productsCsvFileFixture: string,
   dbHandler: SqLiteClient;
 
 beforeEach(() => {
-  SqLiteClient.mockClear();
+  // SqLiteClient.mockClear();
 });
 
 describe('ReadCsv Class Test Suite', () => {

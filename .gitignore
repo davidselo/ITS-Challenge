@@ -6,3 +6,4 @@ coverage/
 npm-debug.log*
 *.log
 src/database/inTheStyle.db
+dist

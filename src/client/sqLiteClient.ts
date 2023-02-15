@@ -52,3 +52,5 @@ export class SqLiteClient {
     this.db.exec(queryStatement);
   }
 }
+
+export default SqLiteClient;
