@@ -1,14 +1,14 @@
 # Node.js Kata - ITS Orders
 
-Code [kata](https://en.wikipedia.org/wiki/Kata_(programming)) in Node.js where you have to write a report of orders.
+Code [kata](<https://en.wikipedia.org/wiki/Kata_(programming)>) in Node.js where you have to write a report of orders.
 
 ## Contents
 
-* [Topic](#topic)
-* [Considerations](#frame-conditions)
-* [Main tasks](#main-tasks)
-* [Optional tasks](#optional-tasks)
-* [Procedure](#procedure)
+- [Topic](#topic)
+- [Considerations](#frame-conditions)
+- [Main tasks](#main-tasks)
+- [Optional tasks](#optional-tasks)
+- [Procedure](#procedure)
 
 ## Topic
 
@@ -19,15 +19,16 @@ We want to write a node app to extract data from csv files which contain order a
 Develop your code based on Node.js.
 
 Keep the following priorities in mind while you implementing:
-   1. Code quality
-   2. Usage of object oriented methods
-   3. Functionality
+
+1.  Code quality
+2.  Usage of object oriented methods
+3.  Functionality
 
 ### Main tasks
 
 1. Your app should read all data from the given CSV files into a meaningful data structure/s.
 
-2. Print out all orders (we want order_id & order total) 
+2. Print out all orders (we want order_id & order total)
 
 3. Find an order by its `order_id`.
 
@@ -35,10 +36,9 @@ Keep the following priorities in mind while you implementing:
 
 5. Print out all orders and items sorted by `order_id`.
 
-7. Print out total revenue (Sum of all order totals)
+6. Print out total revenue (Sum of all order totals)
 
-6. Use jest at least to test 1 method
-
+7. Use jest at least to test 1 method
 
 ### Optional tasks
 
@@ -61,11 +61,11 @@ git checkout -b run-<yourname>
 ```
 
 If you want to refactor each iteration you can use
+
 ```
 git checkout -b run-<yourname>-<iteration number>
 # Example: git checkout -b run-candidatename-1
 ```
-
 
 2. Open in your favorite IDE.
 
@@ -87,4 +87,29 @@ npm lint
 
 ```
 npx jest --coverage
+```
+
+##### How to run the cli application?
+
+1. Build the app.
+
+```
+yarn run build:cli
+```
+
+2. Run the cli tool and show help page.
+
+```
+node dist/cli.js -h
+```
+
+#### Some example commands
+
+> **Hint:** First time you run a command it doesn't return any data as is initialising the database, the secon time you have all the data. This is a todo task.
+
+```
+node dist/cli.js --findByCustomerEmail useremail4@example.com
+node dist/cli.js --findByOrderId 12314327
+node dist/cli.js -ot
+
 ```

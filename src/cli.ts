@@ -8,24 +8,32 @@ const program = new Command();
 console.log(figlet.textSync('ITS Manager'));
 
 const databaseFilepath = './src/database/inTheStyle.db';
-const db = new SqLiteClient(databaseFilepath);
-db.connectToDatabase();
-const order = new Order(db);
+
+function getOrderModel() {
+  const db = new SqLiteClient(databaseFilepath);
+  db.connectToDatabase();
+  const ordeModel = new Order(db);
+  return ordeModel;
+}
 
 async function runGetOrdersWithTotals() {
-  const result = await order.getOrdersWithTotalsQuery();
+  const orderModel = getOrderModel();
+  const result = await orderModel.getOrdersWithTotalsQuery();
   console.table(result);
 }
 async function runGetOrdersWithItems() {
-  const result = await order.getOrdersWithItemsQuery();
+  const orderModel = getOrderModel();
+  const result = await orderModel.getOrdersWithItemsQuery();
   console.table(result);
 }
 async function runFindByOrderId(orderId: any) {
-  const result = await order.findByOrderId(orderId);
+  const orderModel = getOrderModel();
+  const result = await orderModel.findByOrderId(orderId);
   console.table(result);
 }
 async function runFindByCustomerEmail(customerEmail: any) {
-  const result = await order.findOrderByCustomerEmail(customerEmail);
+  const orderModel = getOrderModel();
+  const result = await orderModel.findOrderByCustomerEmail(customerEmail);
   console.table(result);
 }
 
