@@ -65,21 +65,51 @@ export class Order {
   }
 
   findByOrderId(orderId: string) {
-    this.dbHandler.db.get(findOrderByIdQuery, orderId, (error: any, row: any) => {
-      if (error) {
-        return console.log(error.message);
-      }
-      // @todo: return result and process in Console or Webapp.
-      console.log(row);
+    let result: { 'Order Id': any; 'Customer Email': any }[] = [];
+    return new Promise((resolve, reject) => {
+      this.dbHandler.db.each(
+        findOrderByIdQuery,
+        orderId,
+        (error: any, row: any) => {
+          if (error) {
+            return console.log(error.message);
+          }
+          // @todo: return result and process in Console or Webapp.
+          result.push({ 'Order Id': row.order_id, 'Customer Email': row.customer_email });
+        },
+        (error: any, n: any) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(result);
+          }
+        },
+      );
     });
+    return result;
   }
   findOrderByCustomerEmail(customerEmail: string) {
-    this.dbHandler.db.get(findOrderByEmailQuery, customerEmail, (error: any, row: any) => {
-      if (error) {
-        return console.log(error.message);
-      }
-      // @todo: return result and process in Console or Webapp.
-      console.log(row);
+    let result: { 'Order Id': any; 'Customer Email': any }[] = [];
+    return new Promise((resolve, reject) => {
+      this.dbHandler.db.each(
+        findOrderByEmailQuery,
+        customerEmail,
+        (error: any, row: any) => {
+          if (error) {
+            return console.log(error.message);
+          }
+          // @todo: return result and process in Console or Webapp.
+          result.push({ 'Order Id': row.order_id, 'Customer Email': row.customer_email });
+        },
+        (error: any, n: any) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(result);
+          }
+        },
+      );
     });
+    return result;
   }
 }

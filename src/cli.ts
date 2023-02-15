@@ -20,6 +20,14 @@ async function runGetOrdersWithItems() {
   const result = await order.getOrdersWithItemsQuery();
   console.table(result);
 }
+async function runFindByOrderId(orderId: any) {
+  const result = await order.findByOrderId(orderId);
+  console.table(result);
+}
+async function runFindByCustomerEmail(customerEmail: any) {
+  const result = await order.findOrderByCustomerEmail(customerEmail);
+  console.table(result);
+}
 
 program
   .version('1.0.0')
@@ -40,9 +48,9 @@ if (options.orderWithItems) {
 }
 if (options.findByOrderId) {
   const orderId = options.findByOrderId;
-  order.findByOrderId(orderId);
+  runFindByOrderId(orderId);
 }
 if (options.findByCustomerEmail) {
   const customerEmail = options.findByCustomerEmail;
-  order.findOrderByCustomerEmail(customerEmail);
+  runFindByCustomerEmail(customerEmail);
 }
