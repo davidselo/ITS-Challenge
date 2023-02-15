@@ -17,26 +17,25 @@ export class SqLiteClient {
     this.databasePath = databasePath;
   }
 
-  connectToDatabase() {
+  async connectToDatabase() {
     // 1. Case database defined, return it.
     if (fs.existsSync(this.databasePath)) {
       this.db = new sqlite3.Database(this.databasePath);
     }
     // 2. Case database doesn't exists, we inicializate it.
     else {
-      const db = new sqlite3.Database(this.databasePath, (error: { message: any }) => {
+      this.db = new sqlite3.Database(this.databasePath, (error: { message: any }) => {
         if (error) {
           return console.error(error.message);
         }
-        // create Database.
-        this.initialiseDatabase(db);
       });
-      this.db = db;
+      // create Database.
+      await this.initialiseDatabase(this.db);
     }
     return this.db;
   }
 
-  initialiseDatabase(databaseHandler: any) {
+  async initialiseDatabase(databaseHandler: any) {
     // 1. Create Database
     databaseHandler.exec(databaseSetupScript);
 
@@ -44,7 +43,7 @@ export class SqLiteClient {
     const csvHelper = new ReadCsv(productCsvFile, orderCsvFile, orderItemsCsvFile, this);
 
     // 3. Processing CSV's files.
-    csvHelper.processCsvFiles();
+    await csvHelper.processCsvFiles();
   }
 
   // Method to run raw queries on the datbase.

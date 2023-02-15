@@ -9,30 +9,30 @@ console.log(figlet.textSync('ITS Manager'));
 
 const databaseFilepath = './src/database/inTheStyle.db';
 
-function getOrderModel() {
+async function getOrderModel() {
   const db = new SqLiteClient(databaseFilepath);
-  db.connectToDatabase();
+  await db.connectToDatabase();
   const ordeModel = new Order(db);
   return ordeModel;
 }
 
 async function runGetOrdersWithTotals() {
-  const orderModel = getOrderModel();
+  const orderModel = await getOrderModel();
   const result = await orderModel.getOrdersWithTotalsQuery();
   console.table(result);
 }
 async function runGetOrdersWithItems() {
-  const orderModel = getOrderModel();
+  const orderModel = await getOrderModel();
   const result = await orderModel.getOrdersWithItemsQuery();
   console.table(result);
 }
 async function runFindByOrderId(orderId: any) {
-  const orderModel = getOrderModel();
+  const orderModel = await getOrderModel();
   const result = await orderModel.findByOrderId(orderId);
   console.table(result);
 }
 async function runFindByCustomerEmail(customerEmail: any) {
-  const orderModel = getOrderModel();
+  const orderModel = await getOrderModel();
   const result = await orderModel.findOrderByCustomerEmail(customerEmail);
   console.table(result);
 }

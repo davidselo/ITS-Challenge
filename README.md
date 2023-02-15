@@ -105,11 +105,10 @@ node dist/cli.js -h
 
 #### Some example commands
 
-> **Hint:** First time you run a command it doesn't return any data as is initialising the database, the secon time you have all the data. This is a todo task.
-
 ```
 node dist/cli.js --findByCustomerEmail useremail4@example.com
 node dist/cli.js --findByOrderId 12314327
 node dist/cli.js -ot
+node dist/cli.js -owi
 
 ```
