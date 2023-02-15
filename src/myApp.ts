@@ -1,7 +1,7 @@
 import { SqLiteClient } from './client/sqLiteClient';
 import { Order } from './models/order';
 
-const myApp = () => {
+const myApp = async () => {
   console.log('Hello ITS world!');
 
   // Initialize Database
@@ -12,6 +12,8 @@ const myApp = () => {
   // Printing out Orders with Order Totals.
   const order = new Order(db);
   //order.getOrdersWithTotalsQuery();
+  const orderTest = await order.getOrdersWithTotalsQuery();
+  //console.table(orderTest);
 
   // order.getOrdersWithItemsQuery();
 

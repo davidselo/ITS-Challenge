@@ -12,6 +12,15 @@ const db = new SqLiteClient(databaseFilepath);
 db.connectToDatabase();
 const order = new Order(db);
 
+async function runGetOrdersWithTotals() {
+  const result = await order.getOrdersWithTotalsQuery();
+  console.table(result);
+}
+async function runGetOrdersWithItems() {
+  const result = await order.getOrdersWithItemsQuery();
+  console.table(result);
+}
+
 program
   .version('1.0.0')
   .description('ITS Console Tool')
@@ -24,10 +33,10 @@ program
 const options = program.opts();
 
 if (options.orderWithTotals) {
-  order.getOrdersWithTotalsQuery();
+  runGetOrdersWithTotals();
 }
 if (options.orderWithItems) {
-  order.getOrdersWithItemsQuery();
+  runGetOrdersWithItems();
 }
 if (options.findByOrderId) {
   const orderId = options.findByOrderId;
